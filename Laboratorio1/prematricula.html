@@ -9,77 +9,67 @@
   </head>
   <body>
 
-    <header class="">
+    <header>
         <div class="container">
-            <div class="row pb-3 pt-2">
-                <div class="col-md-3 col-lg-3">
-                    <img src="img/Cenfotec.png" class="img-fluid" alt="logo">
+            <div class="row align-items-center py-3">
+                <div class=" col-md-4 text-center text-md-start">
+                    <img style="width: 150px;" src="img/Cenfotec.jpg" class="img-fluid" alt="logo">
                 </div>
-                <div class="col-md-3 col-lg-3">
-                    <p class="text-white pt-5 mt-4"> Estudiante: Juan Perez </p>
+                <div class="col-md-8 text-md-end text-center">
+                    <p class="text-white mb-1">Estudiante: Juan Perez</p>
+                    <p class="text-white mb-1">Carnet: 100010001</p>
+                    <a href="login.html" class="btn btn-light btn-sm">Cerrar Sesión</a>
                 </div>
-                <div class="col-md-3 col-lg-3">
-                    <p class="text-white pt-5 mt-4"> Carnet: 100010001 </p>
-                </div>
-                <div class="col-md-3 col-lg-3">
-                    <div class="text-white pt-5 mt-4"><a href="login.html">Cerrar Sesión</a></div>
-                </div>
+            </div>
         </div>
     </header>
-
     <section>
         <div class="container mt-2">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="text-center mt-5 mb-2">Proceso de Matricula</h1>
-                    <p class="mt-2"> Para empezar tu matricula, por favor selecciona un curso en la seccion "Seleccione un curso" y luego oprima "clic" a agrear curso.</p>
-                    <p class=""> Si deseas borrar un curso seleccionado, selecciona el curso en la seccion "Cursos Seleccionados" y luego oprima "clic" a borrar curso.</p><br>
+                    <h1 class="text-center mt-5">Proceso de Matricula</h1>
+                    <p class="text-center ">Selecciona un curso y haz clic en "Agregar Curso" para elegir un horario.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
+
+    <section class="principal">
         <div class="container mt-3">
             <div class="row">
-                <div class="col-lg-4 card">
+                <div class="col-lg-5 card my-3">
                     <h2>Seleccione un curso</h2>
-                    <select id="seccion1" multiple Size="6">
-                        <option value="1">Programacion Orientada a Objetos</option>
-                        <option value="2">Bases De Datos</option>
-                        <option value="3">Fundamentos De Programacion</option>
-                        <option value="4">Python Para Principiantes</option>
-                        <option value="5">Diseno Visual</option>
-                    </select><br>
-                    <h2>Seleccione un horario</h2>
-                    <select id="horario" multiple Size="6">
-                        <option value="6">Manana</option>
-                        <option value="7">Tarde</option>
-                        <option value="8">Noche</option>
-                    </select><br>
-                    <a class="btn btn-primary boton mt-2 mb-2" onclick="moverCurso()">Agregar Curso</a>
+                    <select id="curso" size="6" class="form-select">
+                        <option value="1">Programación Orientada a Objetos</option>
+                        <option value="2">Bases de Datos</option>
+                        <option value="3">Fundamentos de Programación</option>
+                        <option value="4">Python para Principiantes</option>
+                        <option value="5">Diseño Visual</option>
+                    </select>
+                    <button class="btn btn-primary mt-3" onclick="agregarCurso()">Agregar Curso</button>
                 </div>
-
-                <!--<div class="col-lg-4 card">
-                    <h2>Seleccione un horario</h2>
-                    <select id="horario" multiple Size="6">
-                        <option value="6">Manana</option>
-                        <option value="7">Tarde</option>
-                        <option value="8">Noche</option>
-                    </select><br>
-                    <a class="btn btn-primary boton mt-2 mb-2" onclick="escogerHorario()">Agregar Curso</a>
-                </div>-->
-
-        <div class="col-lg-4 card">
-            <h2>Cursos Seleccionados</h2>
-            <select id="seccion2" multiple Size="6"></select><br>
-            <a class="btn btn-primary boton mt-2 mb-2" onclick="borrarCurso()">Borrar Curso</a>
+                <div class=" container-fluid col-lg-5 card my-3">
+                    <h2>Cursos Seleccionados</h2>
+                    <ul id="cursosSeleccionados" class="list-group"></ul>
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
     </section>
+    
+    <div class="container text-center mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <button onclick="finalizarMatricula()" class="btn btn-success mt-3">Finalizar Matrícula</button>
+            </div>
+        </div>
 
-    <footer class="mt-5">
+    </div>
+
+
+
+
+    <footer class="">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

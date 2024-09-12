@@ -3,12 +3,15 @@ footer {
     padding: 20px 0px;
     font-size: 20px;
     background-color: #04449b;
+    margin-top: 5vh;
 }
 
 header {
     background-color: #04449b;
 }
-
+.principal{
+    margin-top: 10vh;
+}
 .boton {
     text-decoration: none;
     color: white;
@@ -23,3 +26,12 @@ a {
 select {
     cursor: pointer;
 }
+
+.usuario {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+
+}
+
