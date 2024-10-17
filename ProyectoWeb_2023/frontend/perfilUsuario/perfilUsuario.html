@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="/frontend/header_footer/header_footer.css"> 
+    <link rel="stylesheet" href="./perfilUsuario.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="./perfilUsuario.js"></script>
+</head>
+<body>
+    <header> 
+        <div class="contenedor-header">
+            <div class="header-izquierdo">
+                <a href="../LandingPageProducto/landingProducto.html"><img class="logo" src="../header_footer/logoCostaVerde.jpeg" alt="Logo de Harbor"> </a>
+                <div class="botones-izquierdos">
+                    <a class="botones-navegar" href="../alojamiento/alojamiento.html">Alojamiento </a>
+                    <a class="botones-navegar" href="../restaurante/restaurante.html" style="margin: 0 15px 0 15px;">Restaurantes </a> 
+                    <a class="botones-navegar" href="../serviciosTuristicos/serviciosTuristicos.html">Servicios Turisticos</a>
+                </div>
+                <div class="header-derecha">
+                    <span id="nombreUsuario"></span>
+                </div>
+            </div> 
+        </div>
+    </header>
+    <main>
+        <section class="wrap">
+            <div class="out-container">
+                <div class="container">
+                    <div class="left-container">
+                        <div class="card-content form-container" id="perfilUsuarioContainer">
+                            <div class="data-item">
+                                <label for="name">Nombre:</label>
+                                <input type="text" id="name" class="data" readonly>
+                            </div>
+                            <div class="data-item">
+                                <label for="lastname">Apellido:</label>
+                                <input type="text" id="lastname" class="data" readonly>
+                            </div>
+                            <div class="data-item">
+                                <label for="usuario">Usuario:</label>
+                                <input type="text" id="usuario" class="data" readonly>
+                            </div>
+                            <div class="data-item">
+                                <label for="email">Correo Electrónico:</label>
+                                <input type="text" id="email" class="data" readonly>
+                            </div>
+                            <a class="botones-navegar" href="../reservas/reservas.html">Mis reservas</a>
+                        </div>
+                    </div>
+                    <div class="right-container">
+                        <div class="card-content">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp" alt="login form" class="login-image" />
+                            <button id="formulario"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer> 
+        <div class="footer-izquierdo">
+            <button onclick="window.location.href='/'" class="nav-button">Inicio</button>
+            <button onclick="window.location.href='https://www.ict.go.cr/es/'" class="nav-button">Instituto Costarricense de Turismo, Sitio Institucional</button>
+        </div>
+        <div class="footer-derecho">
+        </div>
+    </footer>
+</body>
+</html>

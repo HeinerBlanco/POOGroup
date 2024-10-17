@@ -1,0 +1,76 @@
+.contenedor-header, body {
+    margin: 0;
+}
+
+.wrap {
+    display: flex;
+    height: 90vh;
+    background-color: #D8E9A8;
+    width: 90rem;
+}
+
+.container {
+    width: 60rem;
+    height: 30rem;
+    margin-left: 25%;
+    margin-top: 10%;
+    display: flex;
+    background-color: #fff;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+
+}
+
+.left-container,
+.right-container {
+    width:100rem;
+}
+
+.card-content {
+    padding-top: 25%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-image {
+    width: 70%;
+    max-height: 20rem;
+    border-radius: 100px;
+
+}
+
+.form-container {
+    padding: 1rem;
+    margin-top: 10rem;
+    text-align: left;
+    width: 100%;}
+.form-container div{
+    font-size: 1.2rem;
+    color: #000;
+    margin-bottom: 2rem;
+}
+span{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.container {
+    width: 60rem;
+    height: 38rem;
+    margin-left: 30%;
+    margin-top: 3%;
+    display: flex;
+    background-color: #fff;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+
+}
+input{
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+}

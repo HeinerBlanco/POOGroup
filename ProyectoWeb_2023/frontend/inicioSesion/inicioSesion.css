@@ -1,0 +1,67 @@
+.fondo{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #D8E9A8;
+    border-radius: 15px;
+}
+
+
+#formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 600px;
+}  
+input{
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ccc;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    transition: 300ms ease-in-out;
+    width: 400px;
+    height: 20px;
+    margin-right: 20px;
+}
+input:focus {
+    background-color: #d8e9a8;
+    transform: scale(1.05);
+  }
+
+button{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    background-color: #D8E9A8;
+    border: 1px solid black;
+    color: #1E5128;
+    padding: 10px 20px;
+    
+    margin: 0 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+
+} 
+.imagen{
+    width: 300px;
+    border-radius: 15px;
+}
+#registrarse, #iniciosesion {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    background-color: #D8E9A8;
+    border: none;
+    color: #1E5128;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}

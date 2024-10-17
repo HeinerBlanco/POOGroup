@@ -1,0 +1,35 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    padding: 50px;
+    gap: 100px;
+}
+#formulario{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.boton-atras{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #D8E9A8;
+    border: 1px solid #1E5128;
+    color: #1E5128;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 0 20px 0;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+
+}
+h2{
+    text-align: center;
+    padding: 0 0 50px 0;
+}
+

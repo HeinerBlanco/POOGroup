@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.hero{
+    width: 80%;
+    height: 50vh;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+}
+.imagen-hero{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    opacity: 0.8;
+}
+.cards-pics{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+}
+.imgC{
+    margin: 0 6vh;
+}
+.imgC img{
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+.infoContainer{
+    display: flex;
+    height: auto;
+    width: 80%;
+}
+.info{
+    flex: 1;
+    padding: 20px;
+    font-size: 2vh;
+    font-weight: 600;
+}
+.image-container{
+    flex: 1;
+    text-align: center;
+}
+img{
+    max-width: 100%;
+    height: 40vh;
+    border-radius: 10px;
+}
+
+.statsContainer{
+    display: flex;
+    background-color: #bebebe49;
+    width: 100%;
+    justify-content: space-between;
+    margin: 5vh;
+}
+.statsContainer h2{
+    font-size: 6vh;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.stats{
+    height: 10vh;
+    font-size: 2vh;
+    text-align: center;
+    margin: 5vh;
+}
+.cards-container{
+    display: flex;
+    height: auto;
+    margin: 5vh;
+    width: 80%;
+    max-width: fit-content;
+    max-height: 100%;
+    font-size: 2vh;
+    font-weight: 600;
+}
+.cards-container h2{
+    text-align: center;
+    margin: 2%;
+    text-decoration: underline;
+    font-size: 3vh;
+}
+
+.card{
+    border: 3px solid green;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    margin: 0 10px;
+}
+.card img{
+    width: 30%;
+    height: auto;
+    border-radius: 4px;
+}
+.accesibilidadInfo{
+    font-size: 2vh;
+    text-align: center;
+    margin: 5vh;
+    font-weight: 600;
+}
