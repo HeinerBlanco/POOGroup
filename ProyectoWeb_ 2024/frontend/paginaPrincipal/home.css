@@ -1,0 +1,256 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del menú de navegación */
+.navbar {
+    background-color: white;
+    padding: 10px 0;
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #0056b3;
+    color: white;
+    border-radius: 4px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+}
+
+/* Contenedor principal */
+.main-container {
+    display: flex;                /* Activar Flexbox */
+    justify-content: space-between; /* Alinear los dos contenedores */
+    max-width: 1800px;            /* Ancho máximo del contenedor */
+    margin: 0 auto;               /* Centrar el contenedor */
+    padding: 20px;
+    background-color: #f4f4f4;    /* Color de fondo opcional */
+    gap: 20px;                    /* Espacio entre los contenedores */
+}
+
+/* Contenedor izquierdo (texto y botón) */
+.left-container {
+    flex: 1;                      /* Ocupar el mismo espacio que el contenedor derecho */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;        /* Alinear el texto y el botón verticalmente */
+    justify-content: center;       /* Centrar verticalmente el contenido */
+    background-color: #fff;
+    border: #ccc;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.left-container h1 {
+    margin-bottom: 15px;
+}
+
+.left-container p {
+    margin-bottom: 20px;
+}
+
+.left-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #0e69c9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    height: 60px;
+    width: 210px;
+}
+
+.left-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Contenedor derecho (imagen) */
+.right-container {
+    flex: 1;                      /* Ocupar el mismo espacio que el contenedor izquierdo */
+    display: flex;
+    align-items: center;           /* Centrar verticalmente la imagen */
+    justify-content: center;       /* Centrar horizontalmente la imagen */
+}
+
+.right-container img {
+    max-width: 100%;              /* Hacer que la imagen ocupe todo el ancho del contenedor */
+    height: auto;                 /* Mantener la proporción de la imagen */
+    border-radius: 10px;          /* Bordes redondeados en la imagen */
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;    /* Apilar los contenedores verticalmente */
+    }
+
+    .right-container {
+        margin-top: 20px;
+    }
+}
+
+/* Contenedor izquierdo (texto y botón) */
+.container1 {
+    flex: 4;                      /* Ocupar el mismo espacio que el contenedor derecho */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;        /* Alinear el texto y el botón verticalmente */
+    justify-content: center;       /* Centrar verticalmente el contenido */
+    background-color: #fff;
+    border: #ccc;
+    border-radius: 20px;
+    text-align: left;
+}
+
+.container1:hover {
+    background-color: #555;
+    color: white;
+    transform: all 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+/* Contenedor derecho (imagen) */
+.container2 {
+    flex: 4;                      /* Ocupar el mismo espacio que el contenedor derecho */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;        /* Alinear el texto y el botón verticalmente */
+    justify-content: center;       /* Centrar verticalmente el contenido */
+    background-color: #fff;
+    border: #ccc;
+    border-radius: 20px;
+    text-align: left;    /* Centrar horizontalmente la imagen */
+}
+
+.container2:hover {
+    background-color: #555;
+    color: white;
+    transform: all 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+/* Contenedor derecho (imagen) */
+.container3 {
+    flex: 4;                      /* Ocupar el mismo espacio que el contenedor derecho */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;        /* Alinear el texto y el botón verticalmente */
+    justify-content: center;       /* Centrar verticalmente el contenido */
+    background-color: #fff;
+    border: #ccc;
+    border-radius: 20px;
+    text-align: left;     /* Centrar horizontalmente la imagen */
+}
+
+.container3:hover {
+    background-color: #555;
+    color: white;
+    transform: all 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+/* Contenedor derecho (imagen) */
+.container4 {
+    flex: 4;                      /* Ocupar el mismo espacio que el contenedor derecho */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;        /* Alinear el texto y el botón verticalmente */
+    justify-content: center;       /* Centrar verticalmente el contenido */
+    background-color: #fff;
+    border: #ccc;
+    border-radius: 20px;
+    text-align: left;     /* Centrar horizontalmente la imagen */
+}
+
+.container4:hover {
+    background-color: #555;
+    color: white;
+    transform: all 0.3s;
+    transition: all ease-in-out 0.3s;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: left;
+}
+
+.footer {
+    display: flex;                /* Activar Flexbox */
+    justify-content: space-between; /* Distribuir las columnas uniformemente */
+    background-color: #333;       /* Color de fondo del footer */
+    color: white;                 /* Texto blanco */
+    padding: 20px;
+    max-width: 1200px;            /* Ancho máximo */
+    margin: 0 auto;               /* Centrar el footer en la página */
+}
+
+/* Estilo de cada columna del footer */
+.footer-column {
+    display: flex;
+    flex-direction: column;       /* Alinear enlaces en columna */
+    gap: 10px;                    /* Espacio entre los enlaces */
+}
+
+/* Estilo de los enlaces */
+.footer-column a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+/* Cambiar el color del enlace al pasar el ratón */
+.footer-column a:hover {
+    color: #007bff;               /* Cambiar a azul al pasar el ratón */
+}
+
+/* Estilos responsivos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;    /* Apilar columnas verticalmente */
+        text-align: center;
+    }
+
+    .footer-column {
+        margin-bottom: 20px;       /* Agregar espacio entre columnas */
+    }
+}
