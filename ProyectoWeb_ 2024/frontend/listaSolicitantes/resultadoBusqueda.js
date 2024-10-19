@@ -21,32 +21,57 @@ async function cargarSolicitantes() {
   }
 }
 
-// Función para mostrar los solicitantes en la lista
 function mostrarSolicitantes(solicitantes) {
-  const lista = document.getElementById("solicitantes");
-  lista.innerHTML = ""; // Limpia la lista antes de agregar los solicitantes
+    const lista = document.getElementById("solicitantes");
+    lista.innerHTML = ""; // Limpia la lista antes de agregar los solicitantes
 
-  solicitantes.forEach((solicitante) => {
-      const item = document.createElement("li");
+    solicitantes.forEach((solicitante) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
 
-      const nombre = document.createElement("h3");
-      nombre.textContent = `${solicitante.nombre} ${solicitante.apellidos}`;
+        const imagen = document.createElement("img");
+        imagen.src = solicitante.imagen;
+        imagen.alt = `${solicitante.nombre} ${solicitante.apellidos}`;
+        imagen.classList.add("card-img");
 
-      const email = document.createElement("p");
-      email.textContent = `Correo electrónico: ${solicitante.correoElectronico}`;
+        const cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
 
-      const telefono = document.createElement("p");
-      telefono.textContent = `Teléfono: ${solicitante.numContacto}`;
+        const nombre = document.createElement("h3");
+        nombre.textContent = `${solicitante.nombre} ${solicitante.apellidos}`;
+        nombre.classList.add("card-title");
 
-      const direccion = document.createElement("p");
-      direccion.textContent = `Dirección: ${solicitante.direccion}`;
+        const email = document.createElement("p");
+        email.textContent = `Correo electrónico: ${solicitante.correoElectronico}`;
 
-      item.appendChild(nombre);
-      item.appendChild(email);
-      item.appendChild(telefono);
-      item.appendChild(direccion);
-      lista.appendChild(item);
-  });
+        const telefono = document.createElement("p");
+        telefono.textContent = `Teléfono: ${solicitante.numContacto}`;
+
+        const direccion = document.createElement("p");
+        direccion.textContent = `Dirección: ${solicitante.direccion}`;
+
+        const curriculum = document.createElement("a");
+        curriculum.href = solicitante.curriculum;
+
+        // Botón para ver el currículum
+        const verCurriculum = document.createElement("button");
+        verCurriculum.textContent = "Ver currículum";
+        verCurriculum.classList.add("ver-curriculum-btn");
+        verCurriculum.onclick = function() {
+            // Asegúrate de que solicitante.curriculum contiene la URL del PDF en Cloudinary
+            window.open(solicitante.curriculum, "_blank"); // Abre el PDF en una nueva pestaña
+        };
+
+        // Agregar los elementos al contenedor de la tarjeta
+        cardBody.appendChild(nombre);
+        cardBody.appendChild(email);
+        cardBody.appendChild(telefono);
+        cardBody.appendChild(direccion);
+        cardBody.appendChild(verCurriculum); // Agregar el botón de currículum
+        card.appendChild(imagen);
+        card.appendChild(cardBody);
+        lista.appendChild(card);
+    });
 }
 
 // Llamar a la función cargarSolicitantes cuando la página cargue

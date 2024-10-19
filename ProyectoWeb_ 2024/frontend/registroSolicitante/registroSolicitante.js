@@ -6,7 +6,33 @@ function redirectToHomePage() {
 window.onload = function() {
   const formulario=document.getElementById("formulario");
   formulario.addEventListener("submit",enviarFormulario);
-};
+
+  // agregar eventos cloudinary
+  const boton = document.getElementById('subir-imagen');
+  const previstaImagen = document.getElementById('prevista-imagen');
+  let myWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: 'dbhmj9ozd',
+      uploadPreset: 'JeinerBlanco',
+
+    },
+    (error, result) => {
+      if (!error && result && result.event === "success") {
+        console.log('Imagen subida con exito', result.info);
+        previstaImagen.src = result.info.secure_url;
+      }
+    }
+
+  );
+
+  boton.addEventListener(
+    'click', 
+    function() {
+      myWidget.open();
+    }, 
+    false
+  );
+    };
 
 
 async function enviarFormulario(evento) {
@@ -20,10 +46,10 @@ async function enviarFormulario(evento) {
       const fechaNacimiento = document.getElementById("date").value;
       const numContacto = document.getElementById("phone").value;
       const direccion = document.getElementById("address").value;
-      const curriculum = document.getElementById("curriculum").value;
+     const imagenUrl = document.getElementById('prevista-imagen');
       const puesto = document.getElementById("puesto").value;
 
-if (!correoElectronico || !password || !nombre || !apellidos || !fechaNacimiento || !numContacto || !direccion || !curriculum || !puesto) {          
+if (!correoElectronico || !password || !nombre || !apellidos || !fechaNacimiento || !numContacto || !direccion || !imagenUrl.src || !puesto) {          
     alert("Faltan datos");
           return;
       }
@@ -41,7 +67,7 @@ if (!correoElectronico || !password || !nombre || !apellidos || !fechaNacimiento
               fechaNacimiento: fechaNacimiento,
               numContacto: numContacto,
               direccion: direccion,
-              curriculum: curriculum,
+              imagen: imagenUrl.src,
               puesto: puesto
 
           })  
@@ -58,7 +84,7 @@ if (!correoElectronico || !password || !nombre || !apellidos || !fechaNacimiento
           document.getElementById("date").value = "";
           document.getElementById("phone").value = "";
           document.getElementById("address").value = "";
-          document.getElementById("curriculum").value = "";
+          document.getElementById("prevista-imagen").src = "";
           document.getElementById("puesto").value = "";
 
           

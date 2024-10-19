@@ -78,7 +78,7 @@ const nuevoSolicitante = new modeloSolicitante({
     fechaNacimiento: solicitud.body.fechaNacimiento,
     numContacto: solicitud.body.numContacto,
     direccion: solicitud.body.direccion,
-    curriculum: solicitud.body.curriculum,
+    imagen: solicitud.body.imagen,
     puesto: solicitud.body.puesto,
 });
 

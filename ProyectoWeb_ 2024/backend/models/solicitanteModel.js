@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-
-//crear un esquema del solicitante de empleo
+// Crear un esquema del solicitante de empleo
 const solicitanteSchema = new mongoose.Schema({
     correoElectronico: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        match: [/.+\@.+\..+/, "Por favor ingresa un correo electrónico válido"]
     },
     password: {
         type: String,
@@ -22,19 +22,26 @@ const solicitanteSchema = new mongoose.Schema({
     },
     fechaNacimiento: {
         type: Date,
-        required: true
+        required: true,
+        validate: {
+            validator: function(v) {
+                return v <= Date.now();
+            },
+            message: "La fecha de nacimiento no puede ser en el futuro"
+        }
     },
     numContacto: {
         type: String,
-        required: true
+        required: true,
+        match: [/^\d{10}$/, "Por favor ingresa un número de contacto válido de 10 dígitos"]
     },
     direccion: {
         type: String,
         required: true
     },
-    curriculum: {
-        type : String,
-        required: true
+    imagen: {
+        type: String,
+        required: false,
     },
     puesto: {
         type: String,
@@ -42,8 +49,8 @@ const solicitanteSchema = new mongoose.Schema({
     }
 });
 
-// crear modelo de solicitante
+// Crear modelo de solicitante
 const modeloSolicitante = mongoose.model("Solicitante", solicitanteSchema);
 
-//exportar modelo de solicitante a otros archivos
+// Exportar modelo de solicitante a otros archivos
 module.exports = modeloSolicitante;
