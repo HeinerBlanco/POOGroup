@@ -213,34 +213,21 @@ h1 {
     text-align: left;
 }
 
-.footer {
-    display: flex;                /* Activar Flexbox */
-    justify-content: space-between; /* Distribuir las columnas uniformemente */
-    background-color: #333;       /* Color de fondo del footer */
-    color: white;                 /* Texto blanco */
-    padding: 20px;
-    max-width: 1200px;            /* Ancho máximo */
-    margin: 0 auto;               /* Centrar el footer en la página */
-}
-
-/* Estilo de cada columna del footer */
-.footer-column {
-    display: flex;
-    flex-direction: column;       /* Alinear enlaces en columna */
-    gap: 10px;                    /* Espacio entre los enlaces */
-}
-
-/* Estilo de los enlaces */
-.footer-column a {
+footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    position: fixed;
+    display: grid;
+    place-items: center;
+    /*background: #171A1F;*/
+    background-color: #555;
     color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-/* Cambiar el color del enlace al pasar el ratón */
-.footer-column a:hover {
-    color: #007bff;               /* Cambiar a azul al pasar el ratón */
+    /* Puedes ajustar el ángulo y los colores para mayor personalización */
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
 }
 
 /* Estilos responsivos para pantallas más pequeñas */

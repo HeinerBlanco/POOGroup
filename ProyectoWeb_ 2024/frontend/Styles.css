@@ -185,9 +185,8 @@ footer {
     display: grid;
     place-items: center;
     /*background: #171A1F;*/
-    background: linear-gradient(180deg, #ffffff 50%, #d580ff 150%);
-    /* Puedes ajustar el ángulo y los colores para mayor personalización */
-    color: black; /* Cambia el color del texto según necesites */
+    background-color: #555;
+    color: white;
     padding: 20px;
     text-align: center;
     width: 100%;
