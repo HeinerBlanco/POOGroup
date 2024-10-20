@@ -16,31 +16,30 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-
 // importar cada model
-const modeloSolicitante = require("./models/solicitanteModel");
+
+const  modeloUsuario = require("./models/usuarioModel");
 
 
 
-//crear una instancia de express
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-
 //escuchar en el puerto 3000
 app.listen(3000, function () {
-    console.log("Servidor escuchando en el puerto 3000");
+  console.log("Servidor escuchando en el puerto 3000");
 }); 
 
+// Conectamos con la base de datos
 
-
-// Conectamos a la base de datos
 mongoose
   .connect(
     "mongodb+srv://JeinerBlanco3:BRAinner2714@jeinerblanco.rzos5qi.mongodb.net/?retryWrites=true&w=majority&appName=JeinerBlanco"
   )
+  // escuchando al puerto 3000
+ 
+
   // Todo bien.
   .then(function () {
     console.log("Conexion a base de datos exitosa");
@@ -50,67 +49,38 @@ mongoose
     console.error("Error al conectar a la base de datos:", error);
   });
 
+   // Aqui empieza el CRUD
 
+   //Codigo para crear un nuevo usuario
 
-
-
-
-
-// Crear un nuevo solicitante en el servidor
-app.post ("/solicitantes", async function (solicitud, respuesta) {
-    console.log("Atendiendo solicitud POST a /solicitantes");
+   app.post("/usuario", async function (solicitud, respuesta) {
+    console.log("Atendiendo solicitud POST a /usuario");
 
     // Verificar que se proporcionaron datos
     if (!solicitud.body) {
-        console.error("No se proporcionaron datos para el nuevo solicitante");
-        respuesta.status(400).send("No se proporcionaron datos para el nuevo solicitante");
-        return;
+      console.log("No se proporcionaron datos para el nuevo usuario");
+      respuesta.status(400).send("No se enviaron datos para el nuevo usuario");
+      return;
     }
-    
-    
 
-// Crear un nuevo solicitante en la base de datos
-const nuevoSolicitante = new modeloSolicitante({
-    correoElectronico: solicitud.body.correoElectronico,
+    // Crear un nuevo usuario en el servidor
+    const nuevoUsuario = new modeloUsuario({
+    name: solicitud.body.nombre,
+    email: solicitud.body.email,
     password: solicitud.body.password,
-    nombre: solicitud.body.nombre,
-    apellidos: solicitud.body.apellidos,
-    fechaNacimiento: solicitud.body.fechaNacimiento,
-    numContacto: solicitud.body.numContacto,
-    direccion: solicitud.body.direccion,
-    imagen: solicitud.body.imagen,
-    puesto: solicitud.body.puesto,
-});
+    role: solicitud.body.role,
+  });
 
-try {
-    console.log("Guardando el nuevo solicitante...");
-    const nuevoSolicitanteGuardado = await nuevoSolicitante.save();
-    console.log("Solicitante guardado: ", nuevoSolicitanteGuardado);
-
-    respuesta.status(201).send(nuevoSolicitanteGuardado);
-
-} catch (error) {
-    console.error(error);
-    respuesta.status(500).send("Error al guardar solicitante");
-    return;
-}
-});
-
-
-// Ruta para obtener todos los solicitantes desde la Base de datos
-
-app.get("/solicitantes", async (req, res) => {
   try {
-    const solicitantes = await modeloSolicitante.find(); // Obtener todos los solicitantes de la base de datos
-    res.status(200).json(solicitantes);
+    console.log ("Guardando el nuevo usuario...");
+    const usuarioGuardado = await nuevoUsuario.save();
+    console.log("Usuario guardado:", usuarioGuardado);
+    respuesta.status(201).send(usuarioGuardado);
   } catch (error) {
-    console.error("Error al obtener solicitantes:", error);
-    res.status(500).send("Error al obtener los solicitantes");
+    console.error("Error al guardar el usuario:", error);
+    respuesta.status(500).send("Error al guardar el usuario");
+    return;
   }
 });
-
-
-
-
 
 
