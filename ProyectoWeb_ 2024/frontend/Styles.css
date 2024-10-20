@@ -58,13 +58,6 @@ nav a {
     font-weight: 200;
 }*/
 
-.navbar img {
-    display: flex;
-    width: 40px;
-    background-color: white;
-    border-radius: 50%;
-    padding: 3px;
-}
 
 /* Estilos del menú de navegación */
 .margen {
@@ -223,9 +216,6 @@ section form .fotos {
     margin-top: 20px;
 }
 
-
-
-
 /* FOOTER ESTATICO*/
 footer {
     padding-top: 20px;
@@ -242,5 +232,3 @@ footer {
     width: 100%;
     bottom: 0;
 }
-
-  /* FIN FOOTER ESTATICO */
