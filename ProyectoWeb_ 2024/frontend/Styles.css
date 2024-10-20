@@ -56,17 +56,22 @@ nav a {
     text-decoration: none;
     color: white;
     font-weight: 200;
-}
+}*/
 
-nav div img {
+.navbar img {
     display: flex;
     width: 40px;
     background-color: white;
     border-radius: 50%;
     padding: 3px;
-}*/
+}
 
 /* Estilos del menú de navegación */
+.margen {
+    margin-top: 43px;
+    margin-bottom: 0px;
+}
+
 .navbar {
     background-color: white;
     padding: 10px 0;
