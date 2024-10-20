@@ -1,8 +1,10 @@
-body {
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+/* RESET */
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
 }
 
 /* Estilos del menú de navegación */
