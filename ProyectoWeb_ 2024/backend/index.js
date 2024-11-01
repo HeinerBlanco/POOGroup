@@ -18,7 +18,7 @@ const cors = require("cors");
 
 
 // importar cada model
-const modeloSolicitante = require("./models/solicitanteModel");
+const modeloUsuario = require("../backend/models/userModel");
 
 
 
@@ -56,56 +56,62 @@ mongoose
 
 
 
-// Crear un nuevo solicitante en el servidor
-app.post ("/solicitantes", async function (solicitud, respuesta) {
-    console.log("Atendiendo solicitud POST a /solicitantes");
+// Ruta principal para crear un nuevo usuario
+app.post("/users", async function (solicitud, respuesta) {
+  console.log("Atendiendo petición POST para crear /users");
 
-    // Verificar que se proporcionaron datos
-    if (!solicitud.body) {
-        console.error("No se proporcionaron datos para el nuevo solicitante");
-        respuesta.status(400).send("No se proporcionaron datos para el nuevo solicitante");
-        return;
-    }
-    
-    
+  console.log("Datos recibidos:", solicitud.body);
 
-// Crear un nuevo solicitante en la base de datos
-const nuevoSolicitante = new modeloSolicitante({
-    correoElectronico: solicitud.body.correoElectronico,
-    password: solicitud.body.password,
-    nombre: solicitud.body.nombre,
-    apellidos: solicitud.body.apellidos,
-    fechaNacimiento: solicitud.body.fechaNacimiento,
-    numContacto: solicitud.body.numContacto,
-    direccion: solicitud.body.direccion,
-    imagen: solicitud.body.imagen,
-    puesto: solicitud.body.puesto,
-});
-
-try {
-    console.log("Guardando el nuevo solicitante...");
-    const nuevoSolicitanteGuardado = await nuevoSolicitante.save();
-    console.log("Solicitante guardado: ", nuevoSolicitanteGuardado);
-
-    respuesta.status(201).send(nuevoSolicitanteGuardado);
-
-} catch (error) {
-    console.error(error);
-    respuesta.status(500).send("Error al guardar solicitante");
+  if (!solicitud.body || Object.keys(solicitud.body).length === 0) {
+    console.log("Error al obtener datos del usuario, status 400");
+    respuesta.status(400).send("No se recibieron datos del usuario");
     return;
-}
+  }
+
+  // Crear el nuevo usuario con los datos recibidos
+  const nuevoUsuario = new modeloUsuario({
+    name: solicitud.body.name,
+    email: solicitud.body.email,
+    password: solicitud.body.password,
+    role: solicitud.body.role,
+  });
+
+  console.log("Usuario creado localmente (no guardado aún):", nuevoUsuario);
+
+  try {
+    console.log("Guardando nuevo usuario en la base de datos...");
+    const usuarioGuardado = await nuevoUsuario.save();
+    console.log("Usuario guardado exitosamente:", usuarioGuardado);
+    respuesta.status(201).send(usuarioGuardado);
+  } catch (error) {
+    console.error("Error al guardar usuario en la base de datos:", error);
+    respuesta.status(500).send("Error al guardar usuario");
+  }
 });
 
 
-// Ruta para obtener todos los solicitantes desde la Base de datos
 
-app.get("/solicitantes", async (req, res) => {
+
+
+
+// Ruta para obtener un usuario por su correo electrónico
+app.get("/users/email/:email", async function (request, response) {
+  console.log("Atendiendo solicitud GET a /users/email/:email");
+  const email = request.params.email;
+
   try {
-    const solicitantes = await modeloSolicitante.find(); // Obtener todos los solicitantes de la base de datos
-    res.status(200).json(solicitantes);
+      const usuario = await modeloUsuario.findOne({ email: email });
+      if (!usuario) {
+          console.log("Usuario no encontrado");
+          response.status(404).send("Usuario no encontrado");
+          return;
+      }
+
+      console.log("Usuario encontrado:", usuario);
+      response.status(200).send(usuario);
   } catch (error) {
-    console.error("Error al obtener solicitantes:", error);
-    res.status(500).send("Error al obtener los solicitantes");
+      console.error("Error al obtener usuario por correo:", error);
+      response.status(500).send("Error al obtener usuario");
   }
 });
 
