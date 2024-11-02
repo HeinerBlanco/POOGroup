@@ -19,6 +19,9 @@ const cors = require("cors");
 
 // importar cada model
 const modeloUsuario = require("../backend/models/userModel");
+const modeloEmpleo = require("../backend/models/empleoModel");
+const modeloSolicitudes = require("../backend/models/solicitudesModel");
+
 
 
 
@@ -40,6 +43,7 @@ app.listen(3000, function () {
 mongoose
   .connect(
     "mongodb+srv://JeinerBlanco3:BRAinner2714@jeinerblanco.rzos5qi.mongodb.net/?retryWrites=true&w=majority&appName=JeinerBlanco"
+
   )
   // Todo bien.
   .then(function () {
@@ -117,6 +121,61 @@ app.get("/users/email/:email", async function (request, response) {
 
 
 
+// Ruta para agregar nuevos empleos a la base de datos
+
+app.post("/empleos", async function (solicitud, respuesta) {
+  console.log("Atendiendo petición POST para crear /empleos");
+
+  if (!solicitud.body || Object.keys(solicitud.body).length === 0) {
+      console.log("Error al obtener datos del empleo, status 400");
+      respuesta.status(400).send("No se recibieron datos del empleo");
+      return;
+  }
+
+  // Convertir la fecha de expiración a un objeto Date
+  const fechaExpiracion = new Date(solicitud.body.expiration);
+  if (isNaN(fechaExpiracion.getTime())) {
+      console.log("Fecha de expiración inválida, status 400");
+      respuesta.status(400).send("La fecha de expiración no es válida");
+      return;
+  }
+
+  // Crear el nuevo empleo con los datos recibidos
+  const nuevoEmpleo = new modeloEmpleo({
+      titulo: solicitud.body.titulo,
+      descripcion: solicitud.body.descripcion,
+      salary: solicitud.body.salary,
+      location: solicitud.body.location,
+      job_type: solicitud.body.job_type,
+      modalidad: solicitud.body.modalidad,
+      expiration: fechaExpiracion // Aseguramos que sea un objeto Date válido
+  });
+
+  try {
+      console.log("Guardando nuevo empleo en la base de datos...");
+      const empleoGuardado = await nuevoEmpleo.save();
+      console.log("Empleo guardado exitosamente:", empleoGuardado);
+      respuesta.status(201).send(empleoGuardado);
+
+  } catch (error) {
+      console.error("Error al guardar empleo en la base de datos:", error);
+      respuesta.status(500).send("Error al guardar empleo: " + error.message);
+  }
+});
+
+
+
+
+/* Ruta para obtener todos los empleos de la base de datos */
+
+app.get("/empleos", async (req, res) => {
+  try {
+      const empleos = await modeloEmpleo.find();
+      res.json(empleos);
+  } catch (error) {
+    res.status(500).send("Error al obtener empleos: " + error.message);
+  }
+});
 
 
 

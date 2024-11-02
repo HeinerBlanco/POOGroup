@@ -33,7 +33,7 @@ async function enviarFormulario(evento) {
             return;
         }
 
-        console.log("Enviando datos de inicio de sesión:", { correoElectronico, password });
+        console.log("Enviando datos de inicio de sesión:", { correoElectronico, password});
 
         const respuesta = await fetch(`http://localhost:3000/users/email/${correoElectronico}`);
         console.log("Respuesta del servidor:", respuesta);
@@ -42,6 +42,9 @@ async function enviarFormulario(evento) {
             const usuario = await respuesta.json();
             console.log("Usuario encontrado:", usuario);
             alert(`Bienvenido ${usuario.name}`);
+            // funcion que guarda el id del usuario en el localStorage para despues usarlo en las solicitudes de empleos
+            localStorage.setItem("usuarioId", usuario._id);
+
 
             // Llamar a la función para obtener el usuario de la base de datos
             obtenerDatosPorCorreo(correoElectronico);
