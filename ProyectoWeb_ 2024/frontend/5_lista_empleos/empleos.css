@@ -97,6 +97,7 @@ span {
     background: #f0f2f4;
     max-height: 400px;
     min-width: 250px; /* Ancho mínimo fijo para tarjetas */
+    max-width: 250px; /* Ancho máximo para evitar que se extienda demasiado */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -117,12 +118,30 @@ span {
     flex-direction: column;
     justify-content: space-between;
     height: 100%; /* Mantener el tamaño de la tarjeta */
-        transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
+
+}
+.card-body2 {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Mantener el tamaño de la tarjeta */
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    background: #f0f2f4;
+    
+
 
 }
 
 /* Estilos responsivos para pantallas pequeñas */
-@media (max-width: 1200px) {
+@media (max-width: 1700px) {
     #cardSection {
         grid-template-columns: repeat(auto-fit, minmax(4, 1fr)); /* Mantener el ancho mínimo */
         padding-left: 20px; /* Reducir padding en pantallas pequeñas */
@@ -170,7 +189,31 @@ span {
     color: #fff;
 }
 
+#limpiar{
+    display: flex;
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 2px solid #007bff;
+    color: #007bff;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    justify-content: center;
+    align-items: center;
 
+}
+
+#limpiar:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.contienebtn{
+    display: flex;
+    justify-content: center;
+}
 
 /* FOOTER ESTATICO*/
 footer {
@@ -193,3 +236,79 @@ footer {
     text-align: center;
     color: #e10303;
 }
+
+
+
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: #c3c1c1;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width:1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.options, .locations, #location, #salary, #titulo {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    
+    
+}
+
+.options select, #location, #salary, #titulo {
+    border: 1px solid #ccc;
+    padding: 0.7rem;
+    border-radius: 10px;
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
+    
+}
+
+.options select:hover, #location:hover, #salary:hover, #titulo:hover {
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background: linear-gradient(180deg, #d580ff -40%, #ffffff 50%);
+
+}
+
+.locations .swap {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0 0.5rem;
+    
+}
+
+.explore-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.explore-button:hover {
+    background-color: #0056b3;
+    
+}
+
+/* color en el body
+
+
+

@@ -27,6 +27,69 @@
         <p>Encuentra las mejores ofertas de empleos</p>
     </div>
 </header>
+
+<div class="search-bar">
+  <div class="options">
+    <select id="job_type" name="job_type">
+      <option value="" disabled selected>Tipo de trabajo</option>
+      <option value="Tiempo completo">Tiempo completo</option>
+      <option value="Medio tiempo">Medio tiempo</option>
+    </select>
+    <select id="modalidad" name="modalidad">
+      <option value="" disabled selected>Modalidad</option>
+      <option value="Presencial">Presencial</option>
+      <option value="Remoto">Remoto</option>
+      <option value="Híbrido">Híbrido</option>
+    </select>
+</div>
+  <div class="locations">
+    <select  id="titulo" required>
+      <option value="" disabled selected>Seleccione un título de empleo</option>
+      <option value="DESARROLLADOR">Desarrollador</option>
+      <option value="DISEÑADOR">Diseñador</option>
+      <option value="MERCADEO">Mercadeo</option>
+      <option value="VENTAS">Ventas</option>
+      <option value="RECURSOS HUMANOS">Recursos Humanos</option>
+      <option value="GERENTE DE PROYECTOS">Gerente de Proyectos</option>
+      <option value="ANALISTA DE DATOS">Analista de Datos</option>
+      <option value="INGENIERO DE QA">Ingeniero de QA</option>
+      <option value="SOPORTE AL CLIENTE">Soporte al Cliente</option>
+      <option value="GERENTE FINANCIERO">Gerente Financiero</option>
+    </select>
+</div>
+  <div class="dates">
+    <select id="salary" required>
+      <option value="" disabled selected>Seleccione un rango salarial</option>
+      <option value="MENOS DE $500">MENOS DE $500</option>
+      <option value="ENTRE $500 Y $1000">$500 - $1000</option>
+      <option value="ENTRE $1000 Y $2000">$1000 - $2000</option>
+      <option value="ENTRE $2000 Y $3000">$2000 - $3000</option>
+      <option value="MAS DE $3000">$3000 O MÁS</option>
+    </select>
+</div>
+<div>
+  <select id="location" required>
+    <option value="" disabled selected>Seleccione una provincia</option>
+    <option value="San José">San José</option>
+    <option value="Alajuela">Alajuela</option>
+    <option value="Heredia">Heredia</option>
+    <option value="Cartago">Cartago</option>
+    <option value="Guanacaste">Guanacaste</option>
+    <option value="Puntarenas">Puntarenas</option>
+    <option value="Limón">Limón</option>
+  </select>
+</div>
+
+</div>
+
+<div class="contienebtn">
+  <button id="limpiar" onclick="limpiarFiltros()"> Limpiar filtros </button>
+</div>
+
+
+
+
+
 <h2 id="no_disponible"></h2>
 
 
