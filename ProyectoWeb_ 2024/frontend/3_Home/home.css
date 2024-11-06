@@ -262,3 +262,32 @@ a {
     text-decoration: none;
     color: white;
 }
+
+/* Estilos para el contenedor */
+.social-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+/* Estilos para los íconos */
+.social-icon {
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* Colores de cada icono al pasar el cursor */
+.social-icon.github:hover {
+    color: #333333; /* GitHub en gris oscuro */
+}
+
+.social-icon.facebook:hover {
+    color: #1877F2; /* Facebook en azul */
+}
+
+.social-icon.instagram:hover {
+    color: #E1306C; /* Instagram en rosa */
+}
