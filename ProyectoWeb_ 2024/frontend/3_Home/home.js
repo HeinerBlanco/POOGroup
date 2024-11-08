@@ -1,20 +1,37 @@
+window.onload = function () {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  
+  if (usuario) {
+      const nombreUsuario = document.getElementById("nombreUsuario");
+      nombreUsuario.textContent = usuario.name;
+  }
+};
 
-
-function openModal(title, description, imageSrc) {
-    document.getElementById("modalTitle").innerText = `Sucursal ${title}`;
-    document.getElementById("modalDescription").innerText = `Dirección: ${description}`;
-    document.getElementById("modalImage").src = imageSrc;
-    document.getElementById("modal").style.display = "block";
-  }
-  
-  function closeModal() {
-    document.getElementById("modal").style.display = "none";
-  }
-  
-  window.onclick = function(event) {
-    const modal = document.getElementById("modal");
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  
+function salir() {
+  Swal.fire({
+      title: '¿Deseas cerrar sesión?',
+      text: "Se eliminará el usuario de la sesión actual.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, salir',
+      cancelButtonText: 'Cancelar'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          localStorage.removeItem('usuario');
+          
+          Swal.fire({
+              icon: 'success',
+              title: 'Sesión cerrada',
+              text: 'Has salido de tu cuenta con éxito.',
+              showConfirmButton: false,
+              timer: 1500
+          });
+          
+          setTimeout(() => {
+              window.location.href = '../2_Login/login.html';
+          }, 1500);
+      }
+  });
+}

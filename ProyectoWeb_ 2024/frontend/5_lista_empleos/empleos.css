@@ -63,7 +63,7 @@ header p{
 
 }
 
-span {
+span, .options p  {
     color: #0e69c9;
 }
 
@@ -85,6 +85,7 @@ span {
     background-color: #c3c1c1;
     margin-top: 50px;
     margin-bottom: 100px;
+    border-radius: 10px;
 }
 
 /* Estilos para las tarjetas */
@@ -251,46 +252,47 @@ footer {
 .search-bar {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap; /* Permite que los elementos se muevan a la siguiente línea en pantallas pequeñas */
     align-items: center;
     background-color: #c3c1c1;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width:1200px;
+    max-width: 1200px;
     margin: 0 auto;
     justify-content: center;
+    gap: 1rem; /* Espacio entre elementos */
 }
+.checks{
 
-.options, .locations, #location, #salary, #titulo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-right: 1rem;
-    
-    
+    background-color: #c3c1c1;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+
 }
 
-.options select, #location, #salary, #titulo {
+ .locations, .dates, #location {
+    flex: 1; /* Permite que cada elemento se ajuste automáticamente al espacio disponible */
+    min-width: 200px; /* Evita que se encojan demasiado en pantallas pequeñas */
+}
+
+ #location, #salary, #titulo {
+    width: 100%; /* Asegura que los select ocupen todo el ancho del contenedor */
     border: 1px solid #ccc;
     padding: 0.7rem;
     border-radius: 10px;
-    margin: 0 0.5rem;
     font-size: 0.9rem;
-    
 }
 
-.options select:hover, #location:hover, #salary:hover, #titulo:hover {
+#location:hover, #salary:hover, #titulo:hover {
     box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     background: linear-gradient(180deg, #d580ff -40%, #ffffff 50%);
-
-}
-
-.locations .swap {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 0 0.5rem;
-    
 }
 
 .explore-button {
@@ -301,14 +303,89 @@ footer {
     border-radius: 20px;
     font-size: 1rem;
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 .explore-button:hover {
     background-color: #0056b3;
+}
+
+/* Media query para pantallas medianas */
+@media (max-width: 768px) {
+    .search-bar {
+        flex-direction: column; /* Cambia la orientación a columna en pantallas medianas */
+        align-items: stretch; /* Hace que los elementos ocupen el ancho completo */
+    }
+
+  .locations, .dates, #location {
+        margin-right: 0; /* Elimina el margen derecho para evitar espacios no deseados */
+    }
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 480px) {
+     #location, #salary, #titulo {
+        font-size: 0.8rem; /* Reduce el tamaño de fuente en pantallas pequeñas */
+        padding: 0.5rem; /* Reduce el padding para ahorrar espacio */
+    }
+
+    .explore-button {
+        font-size: 0.9rem; /* Ajusta el tamaño del botón en pantallas pequeñas */
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5rem;
+    align-items: flex-start;
+    margin: 2vh;
     
 }
 
-/* color en el body
+.options p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.job-type, .modalidad {
+    display: flex;
+    flex-direction: column; /* Alinea las etiquetas de checkbox en columna */
+    gap: 0.5rem;
+    align-items: center;
+}
+
+label {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    accent-color: #007bff; /* Cambia el color del checkbox */
+    width: 18px;
+    height: 18px;
+
+}
+
+/* Opciones de hover */
+
+input[type="checkbox"]:hover {
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
 
 
+}
 
+@media (max-width: 768px) {
+    .options {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 1rem;
+    }
+}

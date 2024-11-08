@@ -1,68 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="../css/Styles.css">
+    <meta name="description" content="Encuentra trabajos que se ajusten a tus habilidades y experiencia.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpleosCR | Inicio</title>
     <link rel="stylesheet" href="home.css">
-    <link rel="icon" type="icon" href="../img/application.png" />
+    <link rel="icon" type="image/png" href="../img/application.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
 <body>
 
     <nav class="navbar">
         <ul class="nav-menu">
-            <li class="nav-item"><a href="#" class="nav-link">
-                <!--<img src="../img/application.png" class="">--></a>
-            </li>
             <li class="nav-item"><a href="../3_Home/home.html" class="nav-link">Inicio</a></li>
             <li class="nav-item"><a href="../4_publicar_empleos/publicar_empleo.html" class="nav-link">Publicar Empleo</a></li>
             <li class="nav-item"><a href="../1_registro_usuarios/registro_usuario.html" class="nav-link">Registrarse</a></li>
-            <li class="nav-item"><a href="../2_Login/login.html" class="nav-link">Iniciar Sesion</a></li>
+            <li class="nav-item"><a href="../2_Login/login.html" class="nav-link">Iniciar Sesión</a></li>
         </ul>
+        <div class="usuario">
+            <a href="../" id="nombreUsuario" class="nombre-usuario"></a>
+            <button onclick="salir()">Salir</button>
+        </div>
     </nav>
 
     <div class="main-container">
-        <!-- Contenedor Izquierdo: Texto y botón -->
         <div class="left-container">
             <h1>Encuentra un <span>Trabajo</span> que se ajuste a tus <span>Habilidades</span></h1>
-            <p>Somos una comunidad creada para profesionales que buscan una oportunidad laboral dentro de su ambito de experiencia..</p>
-            <button type="submit">
-              <a href="../5_lista_empleos/empleos.html">Empleos Disponibles</a>  
+            <p>Somos una comunidad creada para profesionales que buscan una oportunidad laboral dentro de su ámbito de experiencia.</p>
+            <button type="button">
+                <a href="../5_lista_empleos/empleos.html">Empleos Disponibles</a>  
             </button>        
         </div>
 
-        <!-- Contenedor Derecho: Imagen -->
         <div class="right-container">
-            <img src="pic1.png" alt="imagen1" class="img">
+            <img src="pic1.png" alt="Imagen de búsqueda de empleo" class="img">
         </div>
     </div>
 
     <div class="main-container">
-        <div class="container1">
+        <div class="info-container">
             <h2>¿Por qué elegirnos?</h2>
-            <p> Somos lideres en el mercado</p>
+            <p> Somos líderes en el mercado.</p>
         </div>
-        <div class="container2">
+        <div class="info-container">
             <h2>¿Nueva oportunidad laboral?</h2>
-            <p> Te ofrecemos una amplia gama de empleos</p>
+            <p> Te ofrecemos una amplia gama de empleos.</p>
         </div>
-        <div class="container3">
+        <div class="info-container">
             <h2>Interface Simple</h2>
-            <p> Una plataforma amigable para una mejor experiencia</p>
+            <p> Una plataforma amigable para una mejor experiencia.</p>
         </div>
-        <div class="container4">
-            <h2>Satisfaccion Garantizada</h2>
+        <div class="info-container">
+            <h2>Satisfacción Garantizada</h2>
             <p> Nuestros clientes confirman nuestra eficacia.</p>
         </div>
     </div>
 
-              
-
-</body>
     <footer>
         <div class="footer">
-          <p>
-            &copy; 2024 EmpleosCR Inc. | Jeiner Blanco | Jose Aleman
-          </p>
+            <p>&copy; 2024 EmpleosCR Inc. | Jeiner Blanco | Jose Aleman</p>
         </div>
-      </footer>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="home.js"></script>
+</body>
 </html>

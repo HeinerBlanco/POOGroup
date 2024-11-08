@@ -11,10 +11,14 @@ async function obtenerDatosPorCorreo(correo) {
         const usuario = await respuesta.json();
         console.log("Datos del usuario obtenidos:", usuario);
 
-        document.getElementById("nombreUsuario").textContent = usuario.name;
+        // Verificar que el elemento existe antes de actualizar
+        const nombreUsuarioElemento = document.getElementById("nombreUsuario");
+        if (nombreUsuarioElemento) {
+            nombreUsuarioElemento.textContent = usuario.name;
+        }
         
-        // Almacenar el nombre de usuario en el localStorage
-        localStorage.setItem("user", JSON.stringify(usuario.name));
+        // Guardar todo el objeto usuario en localStorage
+        localStorage.setItem("usuario", JSON.stringify(usuario));
     } catch (error) {
         console.error("Error al obtener datos del usuario:", error);
     }
@@ -27,13 +31,13 @@ async function enviarFormulario(evento) {
         const correoElectronico = document.getElementById("email").value;
         const password = document.getElementById("password").value;
 
-        // Validar que no falten datos
-        if (correoElectronico === "" || password === "") {
-            alert("Faltan datos");
+        // Validar que no falten datos y que el correo tenga un formato adecuado
+        if (correoElectronico === "" || password === "" || !/\S+@\S+\.\S+/.test(correoElectronico)) {
+            alert("Faltan datos o el correo es inválido");
             return;
         }
 
-        console.log("Enviando datos de inicio de sesión:", { correoElectronico, password});
+        console.log("Enviando datos de inicio de sesión:", { correoElectronico, password });
 
         const respuesta = await fetch(`http://localhost:3000/users/email/${correoElectronico}`);
         console.log("Respuesta del servidor:", respuesta);
@@ -42,16 +46,19 @@ async function enviarFormulario(evento) {
             const usuario = await respuesta.json();
             console.log("Usuario encontrado:", usuario);
             alert(`Bienvenido ${usuario.name}`);
-            // funcion que guarda el id del usuario en el localStorage para despues usarlo en las solicitudes de empleos
-            localStorage.setItem("usuarioId", usuario._id);
 
+            // Limpiar localStorage y almacenar el nuevo usuario
+            localStorage.removeItem("usuario");
+            localStorage.setItem("usuario", JSON.stringify(usuario));
 
-            // Llamar a la función para obtener el usuario de la base de datos
-            obtenerDatosPorCorreo(correoElectronico);
+            // Actualizar el nombre de usuario en el DOM si el elemento existe
+            const nombreUsuarioElemento = document.getElementById("nombreUsuario");
+            if (nombreUsuarioElemento) {
+                nombreUsuarioElemento.textContent = usuario.name;
+            }
 
-            // Almacenar el usuario en el localStorage
-            localStorage.setItem("usuario", correoElectronico);
-
+            // Llamar a la función para obtener el usuario de la base de datos y luego redirigir
+            await obtenerDatosPorCorreo(correoElectronico);
             window.location.href = "../3_Home/home.html";
         } else if (respuesta.status === 404) {
             alert("Correo o contraseña incorrectos");

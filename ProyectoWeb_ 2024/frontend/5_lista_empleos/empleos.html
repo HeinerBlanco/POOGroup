@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Empleos</title>
+    <title>EmpleosCR | Empleos</title>
     <link rel="stylesheet" href="empleos.css">
     <link rel="icon" type="icon" href="../img/application.png" />
 <body>
@@ -29,20 +29,11 @@
 </header>
 
 <div class="search-bar">
-  <div class="options">
-    <select id="job_type" name="job_type">
-      <option value="" disabled selected>Tipo de trabajo</option>
-      <option value="Tiempo completo">Tiempo completo</option>
-      <option value="Medio tiempo">Medio tiempo</option>
-    </select>
-    <select id="modalidad" name="modalidad">
-      <option value="" disabled selected>Modalidad</option>
-      <option value="Presencial">Presencial</option>
-      <option value="Remoto">Remoto</option>
-      <option value="Híbrido">Híbrido</option>
-    </select>
-</div>
-  <div class="locations">
+
+
+
+
+    <div class="locations">
     <select  id="titulo" required>
       <option value="" disabled selected>Seleccione un título de empleo</option>
       <option value="DESARROLLADOR">Desarrollador</option>
@@ -57,6 +48,9 @@
       <option value="GERENTE FINANCIERO">Gerente Financiero</option>
     </select>
 </div>
+
+
+
   <div class="dates">
     <select id="salary" required>
       <option value="" disabled selected>Seleccione un rango salarial</option>
@@ -67,6 +61,9 @@
       <option value="MAS DE $3000">$3000 O MÁS</option>
     </select>
 </div>
+
+
+
 <div>
   <select id="location" required>
     <option value="" disabled selected>Seleccione una provincia</option>
@@ -79,12 +76,45 @@
     <option value="Limón">Limón</option>
   </select>
 </div>
-
 </div>
 
-<div class="contienebtn">
-  <button id="limpiar" onclick="limpiarFiltros()"> Limpiar filtros </button>
+
+<section>
+<div class="options">
+    <div class="job-type">
+
+        <div>
+            <p>Tipo de trabajo:</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+          <label><input type="checkbox" name="job_type" value="Tiempo completo"> Tiempo completo</label>
+            <label><input type="checkbox" name="job_type" value="Medio tiempo"> Medio tiempo</label>
+        </div>
+
+    </div>
+
+    <div class="contienebtn">
+      <button id="limpiar" onclick="limpiarFiltros()"> Limpiar filtros </button>
+    </div>
+    
+    <div class="modalidad">
+
+        <div>
+            <p>Modalidad:</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <label><input type="checkbox" name="modalidad" value="Presencial"> Presencial</label>
+            <label><input type="checkbox" name="modalidad" value="Remoto"> Remoto</label>
+            <label><input type="checkbox" name="modalidad" value="Híbrido"> Híbrido</label>
+        </div>
+
+    </div>
 </div>
+
+
+
 
 
 
