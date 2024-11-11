@@ -21,12 +21,13 @@ const cors = require("cors");
 const modeloUsuario = require("../backend/models/userModel");
 const modeloEmpleo = require("../backend/models/empleoModel");
 const modeloSolicitudes = require("../backend/models/solicitudesModel");
-
+const modeloPerfiles = require("../backend/models/perfilesModel");
 
 
 
 //crear una instancia de express
 const app = express();
+const PORT = 3000;
 app.use(express.json());
 app.use(cors());
 
@@ -179,3 +180,95 @@ app.get("/empleos", async (req, res) => {
 
 
 
+
+
+
+/*Ruta para enviar las solicitudes de empleo a la base de datos*/
+
+app.post("/solicitudes", async function (solicitud, respuesta) {
+  console.log("Atendiendo petición POST para crear /solicitudes");
+
+  if (!solicitud.body || Object.keys(solicitud.body).length === 0) {
+      console.log("Error al obtener datos de la solicitud, status 400");
+      respuesta.status(400).send("No se recibieron datos de la solicitud");
+      return;
+  }
+
+  // Crear la nueva solicitud con los datos recibidos
+
+  const nuevaSolicitud = new modeloSolicitudes({
+      titulo: solicitud.body.titulo,
+      job_type: solicitud.body.job_type,
+      modalidad: solicitud.body.modalidad,
+      salary: solicitud.body.salary,
+      location: solicitud.body.location,
+      usuario: solicitud.body.usuario
+  });
+
+  try {
+      console.log("Guardando nueva solicitud en la base de datos...");
+      const solicitudGuardada = await nuevaSolicitud.save();
+      console.log("Solicitud guardada exitosamente:", solicitudGuardada);
+      respuesta.status(201).send(solicitudGuardada);
+  } catch (error) {
+      console.error("Error al guardar solicitud en la base de datos:", error);
+      respuesta.status(500).send("Error al guardar solicitud" + error.message);
+  }
+});
+
+
+
+
+
+// Ruta principal para crear un nuevo Perfil
+app.post("/perfiles", async function (solicitud, respuesta) {
+  console.log("Atendiendo petición POST para crear /perfiles");
+
+  console.log("Datos recibidos:", solicitud.body);
+
+  if (!solicitud.body || Object.keys(solicitud.body).length === 0) {
+    console.log("Error al obtener datos del perfil, status 400");
+    respuesta.status(400).send("No se recibieron datos del perfil");
+    return;
+  }
+
+  // Crear el nuevo perfil con los datos recibidos
+  const nuevoPerfil = new modeloPerfiles({
+    nombre: solicitud.body.nombre,
+    email: solicitud.body.email,
+    phone: solicitud.body.phone,
+    experience: solicitud.body.experience,
+    modalidad: solicitud.body.modalidad,
+    job_type: solicitud.body.job_type,
+    location: solicitud.body.location,
+    previstaImagen: solicitud.body.previstaImagen,
+});
+  console.log("Perfil creado localmente (no guardado aún):", nuevoPerfil);
+  console.log("Datos recibidos:", solicitud.body); // Asegúrate de que solicitud.body.imagen esté presente y tenga valor
+
+
+  try {
+    console.log("Guardando nuevo perfil en la base de datos...");
+    const perfilGuardado = await nuevoPerfil.save();
+    console.log("Perfil guardado exitosamente:", perfilGuardado);
+    respuesta.status(201).send(perfilGuardado);
+  } catch (error) {
+    console.error("Error al guardar perfil en la base de datos:", error);
+    respuesta.status(500).send("Error al guardar el perfil");
+  }
+});
+
+
+// Ruta para obtener todos los perfiles de la base de datos
+
+app.get ("/perfiles", async function (req, res) {
+  console.log("Atendiendo solicitud GET a /perfiles");
+  try {
+    const perfiles = await modeloPerfiles.find();
+    console.log("Perfiles encontrados:", perfiles);
+    res.status(200).send(perfiles);
+  } catch (error) {
+    console.error("Error al obtener perfiles:", error);
+    res.status(500).send("Error al obtener perfiles");
+    }
+  });

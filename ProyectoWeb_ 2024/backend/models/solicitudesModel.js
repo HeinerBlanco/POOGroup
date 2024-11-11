@@ -3,19 +3,29 @@ const mongoose = require("mongoose");
 
 // Crear un esquema de solicitudes de empleo
 const schemaSolicitud = new mongoose.Schema({
-    usuarioId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+    titulo: {
+        type: String,
         required: true
     },
-    empleoId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Empleo",
+    job_type: {
+        type: String,
         required: true
     },
-    fechaSolicitud: {
-        type: Date,
-        default: Date.now
+    modalidad: {
+        type: String,
+        required: true
+    },
+    salary: {
+        type: String,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    usuario: {
+        type: String,
+        required: true
     }
 });
 
