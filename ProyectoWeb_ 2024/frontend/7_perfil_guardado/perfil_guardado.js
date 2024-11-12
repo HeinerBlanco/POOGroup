@@ -3,8 +3,7 @@ document.getElementById("loadProfileBtn").addEventListener("click", async () => 
     mostrarPerfiles(perfiles);
 });
 
-
-const perfiles = []
+const perfiles = [];
 
 async function obtenerPerfiles() {
     try {
@@ -17,11 +16,8 @@ async function obtenerPerfiles() {
 
         if (respuesta.ok) {
             const todosLosPerfiles = await respuesta.json();
-
-            // limpiar la lista de perfiles y agregar los nuevos
             perfiles.length = 0;
             perfiles.push(...todosLosPerfiles);
-
         } else {
             console.error("Error al obtener los perfiles", respuesta.status);
         }
@@ -30,41 +26,78 @@ async function obtenerPerfiles() {
     }
 }
 
-// Función para mostrar los perfiles en el DOM
+// Función para cargar perfil en modo edición
+async function cargarPerfilParaEditar(email) {
+    try {
+        const respuesta = await fetch(`http://localhost:3000/perfiles/email/${email}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
 
-function mostrarPerfiles(perfilesFiltrados) {
-    const listaPerfiles = document.getElementById("cardSection");
-    if (!listaPerfiles) {
-        console.error("El elemento 'cardSection' no se encuentra en el DOM");
-        return;
+        if (respuesta.ok) {
+            const perfil = await respuesta.json();
+
+            document.getElementById("email_oculto").value = perfil.email;
+            document.getElementById("name").value = perfil.nombre;
+            document.getElementById("phone").value = perfil.phone;
+            document.getElementById("experience").value = perfil.experience;
+            document.getElementById("modalidad").value = perfil.modalidad;
+            document.getElementById("job_type").value = perfil.job_type;
+            document.getElementById("location").value = perfil.location;
+
+            // Cambiar texto del botón a "Actualizar Perfil"
+            const submitButton = document.querySelector("button[type='submit']");
+            submitButton.textContent = "Actualizar Perfil";
+        } else {
+            console.error("Error al cargar el perfil para edición", respuesta.status);
+        }
+    } catch (error) {
+        console.error("Error en la solicitud de edición", error);
     }
+}
 
-    listaPerfiles.innerHTML = "";
+// Función para enviar el formulario
+async function enviarFormulario(evento) {
+    evento.preventDefault();
 
-    if (perfilesFiltrados.length === 0) {
-        listaPerfiles.innerHTML = `<p class="modern-card">No se encontraron perfiles en la base de datos.</p>`;
-        listaPerfiles.style.textAlign = "center";
-        listaPerfiles.style.padding = "20px";
-        listaPerfiles.style.fontSize = "1.5rem";
-        listaPerfiles.style.color = "red";
-        return;
+    const email = document.getElementById("email_oculto").value; // Obtener correo electrónico
+    const url = email
+        ? `http://localhost:3000/perfiles/email/${email}` // URL para actualizar perfil por correo
+        : "http://localhost:3000/perfiles"; // URL para crear un nuevo perfil
+
+    const method = email ? "PUT" : "POST"; // Usar PUT para actualizar, POST para crear
+
+    try {
+        const perfilData = {
+            nombre: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            experience: document.getElementById("experience").value,
+            modalidad: document.getElementById("modalidad").value,
+            job_type: document.getElementById("job_type").value,
+            location: document.getElementById("location").value,
+            previstaImagen: document.getElementById("pdf_url").value
+        };
+
+        const respuesta = await fetch(url, {
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(perfilData),
+        });
+
+        if (respuesta.ok) {
+            alert("Perfil guardado exitosamente");
+            document.getElementById("formulario").reset();
+            await obtenerPerfiles(); // Recargar perfiles
+        } else {
+            const errorData = await respuesta.text();
+            alert("Error al guardar el perfil: " + errorData);
+        }
+    } catch (error) {
+        alert("Error al guardar el perfil");
+        console.error("Error:", error);
     }
-
-    perfilesFiltrados.forEach(perfil => {
-        const card = document.createElement("div");
-        card.classList.add("card", "modern-card");
-    
-        card.innerHTML = `
-        <img src="${perfil.previstaImagen}" id="imagen" alt="Imagen de perfil" class="card-img-top" style="width: 100%; height: auto;">
-        <div class="card-body">
-            <h3 class="card-title text-center">${perfil.nombre}</h3>
-            <p class="card-text descripcion">${perfil.email}</p>
-            <p class="card-text job-type">${perfil.phone} <br>${perfil.experience} años de experiencia</p>
-            <p class="card-text location"><strong>Modalidad:</strong> <br>${perfil.modalidad}</p>
-            <p class="card-text salary"><strong>Tipo de trabajo:</strong> <br>${perfil.job_type}</p>
-            <p class="card-text title2"><strong>Provincia:</strong> <br>${perfil.location}</p>
-        </div>
-    `;
-            listaPerfiles.appendChild(card);
-    });
 }

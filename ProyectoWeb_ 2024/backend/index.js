@@ -24,7 +24,6 @@ const modeloSolicitudes = require("../backend/models/solicitudesModel");
 const modeloPerfiles = require("../backend/models/perfilesModel");
 
 
-
 //crear una instancia de express
 const app = express();
 const PORT = 3000;
@@ -259,6 +258,12 @@ app.post("/perfiles", async function (solicitud, respuesta) {
 });
 
 
+
+
+
+
+
+
 // Ruta para obtener todos los perfiles de la base de datos
 
 app.get ("/perfiles", async function (req, res) {
@@ -272,3 +277,49 @@ app.get ("/perfiles", async function (req, res) {
     res.status(500).send("Error al obtener perfiles");
     }
   });
+
+
+
+  // Ruta para editar un perfil por su correo electrónico
+
+app.put("/perfiles/email/:email", async function (solicitud, respuesta) {
+  console.log("Atendiendo petición PUT para actualizar /perfiles/email/:email");
+
+  const email = solicitud.params.email;
+  console.log("Datos recibidos:", solicitud.body);
+
+  if (!solicitud.body || Object.keys(solicitud.body).length === 0) {
+      console.log("Error al obtener datos del perfil, status 400");
+      respuesta.status(400).send("No se recibieron datos del perfil");
+      return;
+  }
+
+  try {
+      const perfil = await modeloPerfiles.findOne({ email: email });
+      if (!perfil) {
+          console.log("Perfil no encontrado");
+          respuesta.status(404).send("Perfil no encontrado");
+          return;
+      }
+
+      console.log("Perfil encontrado:", perfil);
+
+      // Actualizar los datos del perfil con los datos recibidos
+      perfil.nombre = solicitud.body.nombre || perfil.nombre;
+      perfil.phone = solicitud.body.phone || perfil.phone;
+      perfil.experience = solicitud.body.experience || perfil.experience;
+      perfil.modalidad = solicitud.body.modalidad || perfil.modalidad;
+      perfil.job_type = solicitud.body.job_type || perfil.job_type;
+      perfil.location = solicitud.body.location || perfil.location;
+      perfil.previstaImagen = solicitud.body.previstaImagen || perfil.previstaImagen;
+
+      console.log("Guardando perfil actualizado en la base de datos...");
+      const perfilActualizado = await perfil.save();
+      console.log("Perfil actualizado exitosamente:", perfilActualizado);
+      respuesta.status(200).send(perfilActualizado);
+  } catch (error) {
+      console.error("Error al actualizar perfil:", error);
+      respuesta.status(500).send("Error al actualizar perfil");
+  }
+});
+
